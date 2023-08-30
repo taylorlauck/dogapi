@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, redirect, url_for
 from flask_debugtoolbar import DebugToolbarExtension 
 import requests 
 from models import db, connect_db
@@ -17,14 +17,23 @@ connect_db(app)
 @app.route("/", methods=['GET', 'POST'])
 def home():
     if request.method == 'POST':
+        name = request.form.get('name')
+        return redirect(url_for('home_with_name', name=name))
+        
+    else:
+        return render_template('enter_name.html')
+
+@app.route("/home/<name>", methods=['GET', 'POST'])
+def home_with_name(name):
+    if request.method == 'POST':
         dog_breed = request.form.get('dog_breed')
         
         # Fetch a random image from the specified breed collection
-        response = requests.get(f'https://dog.ceo/api/breed/{dog_breed}/images/random/10')  # Fetch 3 images
+        response = requests.get(f'https://dog.ceo/api/breed/{dog_breed}/images/random/10')  # Fetch 10 images
         data = response.json()
         image_urls = data['message']
         
-        return render_template('result.html', dog_breed=dog_breed, image_urls=image_urls)
+        return render_template('result.html', name=name, dog_breed=dog_breed, image_urls=image_urls)
         
     else:
         # Fetch the list of dog breeds
@@ -33,9 +42,8 @@ def home():
         breeds_data = breeds_response.json()
         breeds = breeds_data['message']
         
-        return render_template('home.html', breeds=breeds)
+        return render_template('home.html', name=name, breeds=breeds)
 
 
 if __name__ == '__main__':
-      app.run(debug=True)
-
+    app.run(debug=True)
