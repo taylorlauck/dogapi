@@ -20,11 +20,11 @@ def home():
         dog_breed = request.form.get('dog_breed')
         
         # Fetch a random image from the specified breed collection
-        response = requests.get(f'https://dog.ceo/api/breed/{dog_breed}/images/random')
+        response = requests.get(f'https://dog.ceo/api/breed/{dog_breed}/images/random/10')  # Fetch 3 images
         data = response.json()
-        image_url = data['message']
+        image_urls = data['message']
         
-        return render_template('result.html', dog_breed=dog_breed, image_url=image_url)
+        return render_template('result.html', dog_breed=dog_breed, image_urls=image_urls)
         
     else:
         # Fetch the list of dog breeds
@@ -38,3 +38,4 @@ def home():
 
 if __name__ == '__main__':
       app.run(debug=True)
+

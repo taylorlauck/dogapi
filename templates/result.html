@@ -2,15 +2,68 @@
 <html>
 <head>
     <title>Result - Dog Breed Slideshow</title>
+    <style>
+        /* Add some basic styles to the slideshow container */
+        #slideshow {
+            width: 100%;
+            height: 400px;
+            overflow: hidden;
+        }
+
+        /* Use CSS animations to create a smooth transition between images */
+        .slideshow-images {
+            display: flex;
+            animation: slide 10s infinite;
+        }
+
+        @keyframes slide {
+            0%, 100% {
+                transform: translateX(0);
+            }
+            20% {
+                transform: translateX(0);
+            }
+            25% {
+                transform: translateX(-100%);
+            }
+            45% {
+                transform: translateX(-100%);
+            }
+            50% {
+                transform: translateX(-200%);
+            }
+            70% {
+                transform: translateX(-200%);
+            }
+            75% {
+                transform: translateX(-300%);
+            }
+            95% {
+                transform: translateX(-300%);
+            }
+            100% {
+                transform: translateX(-400%);
+            }
+        }
+    </style>
 </head>
 <body>
     <h1>Result - Dog Breed Slideshow</h1>
     
     <h2>Selected Dog Breed: {{ dog_breed }}</h2>
     
-    <img src="{{ image_url }}" alt="Dog Breed Image">
+    <div id="slideshow">
+        <div class="slideshow-images">
+            {% for image in image_urls %}
+                <img src="{{ image }}" alt="Dog Breed Image">
+            {% endfor %}
+        </div>
+    </div>
     
     <p><a href="/">Go back to home</a></p>
 </body>
 </html>
+
+
+
 
