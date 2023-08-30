@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dog Breed Slideshow</title>
+</head>
+<body>
+    <h1>Click or type in the dog you wanna see! :) </h1>
+    
+    <form action="/" method="POST">
+        <label for="dog_breed">Select a dog breed:</label>
+        <select id="dog_breed" name="dog_breed" required>
+            <option value="">Choose a dog breed</option>
+            {% for breed in breeds %}
+                <option value="{{ breed }}">{{ breed }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Search</button>
+    </form>
+    
+    <div id="slideshow"></div>
+</body>
+</html>
+
+
+
+
