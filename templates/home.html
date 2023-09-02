@@ -5,7 +5,7 @@
     <title>Home - Dog Breed Slideshow</title>
 </head>
 <body>
-    <h1>{{ name }} please select the dog you want to see:</h1>
+    <h1>{{ name }} please select the dog you want to see</h1>
     
     <form action="{{ url_for('home_with_name', name=name) }}" method="POST">
         <label for="dog_breed">Select a dog breed:</label>
@@ -17,7 +17,6 @@
         </select>
         <button type="submit">Search</button>
     </form>
-    
     
     <div id="slideshow"></div>
 </body>

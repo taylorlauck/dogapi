@@ -1,7 +1,7 @@
-from flask import Flask, request, render_template, redirect, url_for
-from flask_debugtoolbar import DebugToolbarExtension 
+from flask import Flask, request, render_template, url_for
 import requests 
 from models import db, connect_db
+from flask_debugtoolbar import DebugToolbarExtension
 
 app = Flask(__name__)
 
@@ -14,14 +14,31 @@ debug = DebugToolbarExtension(app)
 
 connect_db(app)
 
+def get_dogs():
+    url = "https://dog.ceo/api/breeds/list/all"
+    response = requests.get(url)
+    data = response.json()
+    all_dogs = []
+    
+    for key, item in data['message'].items():
+        if len(item) == 0:
+            all_dogs.append(key)
+        else:
+            for i in item:
+                all_dogs.append(i + " " + key)
+    
+    return all_dogs
+
+
 @app.route("/", methods=['GET', 'POST'])
 def home():
     if request.method == 'POST':
         name = request.form.get('name')
-        return redirect(url_for('home_with_name', name=name))
+        return render_template('home.html', name=name , breeds=get_dogs()) # Render the home template with the 'name' variable
         
     else:
-        return render_template('enter_name.html')
+
+     return render_template('enter_name.html')
 
 @app.route("/home/<name>", methods=['GET', 'POST'])
 def home_with_name(name):
