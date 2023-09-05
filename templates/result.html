@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+
     <title>Here's the dog you selected </title>
     <style>
         /* Add some basic styles to the slideshow container */
@@ -48,6 +50,7 @@
     </style>
 </head>
 <body>
+    <div class="main-content"> 
     <h1>Heres the dog you selected :)</h1>
     
     <h2>Selected Dog Breed: {{ dog_breed }}</h2>
@@ -61,6 +64,7 @@
     </div>
     
     <p><a href="/">Go back to home</a></p>
+</div>
 </body>
 </html>
 

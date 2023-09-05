@@ -1,0 +1,32 @@
+/* Example CSS rules */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #ffdafb;
+}
+
+h1 {
+    color: #020202;
+}
+
+button {
+    background-color: #ccffc1;
+    color: #000000;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+/* Center all content within the main content container */
+.main-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center vertically */
+    align-items: center; /* Center horizontally */
+    height: 100vh; /* 100% viewport height, ensures it takes the full screen height */
+}
+
+/* Style the form elements as needed */
+form {
+    margin-top: 20px; /* Add some space between the heading and the form */
+}
+

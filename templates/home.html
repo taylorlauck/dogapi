@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-    
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+
     <title>Home - Dog Breed Slideshow</title>
+
 </head>
 <body>
+    <div class="main-content">  
     <h1>{{ name }} please select the dog you want to see</h1>
     
     <form action="{{ url_for('home_with_name', name=name) }}" method="POST">
@@ -19,6 +22,8 @@
     </form>
     
     <div id="slideshow"></div>
+</div>
+
 </body>
 </html>
 
